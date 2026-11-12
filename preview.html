@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VIVA Watches — podgląd szablonu PrestaShop 9.1+ (Hummingbird)</title>
+<style>
+  :root{--red:#d40808;--red-dark:#a90606;--dark:#1c1c1e;--gray:#6b6b6b;--line:#e5e5e5;--bg:#f5f5f5}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:Arial,Helvetica,sans-serif;color:#333;background:#fff}
+  a{color:#333;text-decoration:none}
+  a:hover{color:var(--red)}
+  .container{max-width:1300px;margin:0 auto;padding:0 16px}
+
+  /* topbar */
+  .topbar{background:var(--bg);border-bottom:1px solid var(--line);font-size:12px}
+  .topbar .container{display:flex;justify-content:space-between;align-items:center;min-height:36px}
+  .topbar span{color:var(--gray);margin-right:12px}
+  .topbar b{color:#333}
+
+  /* header */
+  .header-main{padding:14px 0}
+  .header-main .container{display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+  .logo{display:flex;align-items:center;gap:10px}
+  .logo-badge{width:44px;height:44px;background:var(--dark);border-radius:8px;display:flex;align-items:center;justify-content:center}
+  .logo-badge svg{width:26px;height:26px}
+  .logo-name{font-size:24px;font-weight:bold;color:var(--dark)}
+  .logo-name em{color:var(--red);font-style:normal}
+  .search{flex:1;min-width:240px;display:flex}
+  .search input{flex:1;height:42px;border:1px solid var(--line);padding:0 14px;font-size:14px;outline:none}
+  .search button{height:42px;padding:0 18px;background:var(--dark);color:#fff;border:0;cursor:pointer}
+  .cart-btn{height:42px;padding:0 18px;background:var(--red);color:#fff;border:0;font-weight:bold;cursor:pointer;display:flex;align-items:center;gap:8px}
+
+  /* menubar */
+  .menubar{background:var(--dark)}
+  .menubar ul{display:flex;flex-wrap:wrap;list-style:none;margin:0;padding:0}
+  .menubar a{display:block;padding:12px 18px;color:#fff;font-size:14px;font-weight:bold;text-transform:uppercase}
+  .menubar a:hover{background:var(--red);color:#fff}
+
+  /* slider */
+  .slider{background:linear-gradient(120deg,#2b2b30 0%,#43434c 60%,#5a5a66 100%);color:#fff;text-align:center;padding:70px 20px}
+  .slider h2{margin:0 0 8px;font-size:34px;letter-spacing:1px}
+  .slider p{margin:0 0 18px;color:#d9d9de}
+  .slider .btn{display:inline-block;background:var(--red);color:#fff;padding:12px 28px;font-weight:bold;text-transform:uppercase;font-size:14px}
+  .slider .btn:hover{background:var(--red-dark)}
+  .dots{margin-top:18px}
+  .dots i{display:inline-block;width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.4);margin:0 4px}
+  .dots i.on{background:#fff}
+
+  /* trust */
+  .trust{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--bg);padding:16px 0}
+  .trust ul{display:flex;flex-wrap:wrap;justify-content:space-around;gap:12px;list-style:none;margin:0;padding:0;font-size:13px;font-weight:bold;text-transform:uppercase;color:var(--dark)}
+  .trust li i{color:var(--red);font-style:normal;margin-right:6px}
+
+  /* sections */
+  .section-title{position:relative;text-align:center;font-size:20px;text-transform:uppercase;margin:34px 0 22px;padding-bottom:10px}
+  .section-title::after{content:"";position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:60px;height:3px;background:var(--red)}
+
+  /* tabs */
+  .tabs{display:flex;justify-content:center;gap:8px;margin-bottom:20px}
+  .tabs button{padding:9px 26px;border:1px solid var(--line);background:#fff;font-weight:bold;text-transform:uppercase;font-size:13px;cursor:pointer}
+  .tabs button.on{background:var(--red);border-color:var(--red);color:#fff}
+
+  /* products */
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:20px}
+  .card{border:1px solid var(--line);background:#fff;position:relative;transition:.2s}
+  .card:hover{border-color:#ccc;box-shadow:0 6px 18px rgba(0,0,0,.08)}
+  .card .ph{padding:20px;text-align:center;background:#fafafa}
+  .badge{position:absolute;top:10px;left:10px;background:var(--red);color:#fff;font-size:11px;font-weight:bold;padding:3px 8px;letter-spacing:.5px}
+  .badge.dark{background:var(--dark)}
+  .card h4{font-size:14px;font-weight:normal;line-height:1.35;min-height:38px;margin:12px 14px 8px;text-align:center}
+  .price{text-align:center;margin-bottom:10px}
+  .price b{font-size:18px;color:var(--dark)}
+  .price s{display:block;font-size:13px;color:var(--gray)}
+  .card .btns{padding:0 14px 16px}
+  .btn-cart,.btn-ask{display:block;width:100%;padding:10px;font-size:13px;font-weight:bold;text-transform:uppercase;text-align:center;border-radius:0;cursor:pointer}
+  .btn-cart{background:var(--red);border:1px solid var(--red);color:#fff}
+  .btn-cart:hover{background:var(--red-dark);color:#fff}
+  .btn-ask{background:#fff;border:1px solid var(--dark);color:var(--dark)}
+  .btn-ask:hover{background:var(--dark);color:#fff}
+
+  /* seo + blog */
+  .seo{max-width:980px;margin:0 auto;color:var(--gray);font-size:14px;line-height:1.7;padding:0 16px}
+  .blog{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
+  .post{border:1px solid var(--line);padding:18px}
+  .post h4{margin:0 0 8px;font-size:16px}
+  .post p{font-size:13px;color:var(--gray);line-height:1.6;margin:0 0 12px}
+  .post a{color:var(--red);font-weight:bold;font-size:13px}
+
+  /* footer */
+  footer{margin-top:40px}
+  .f-main{padding:34px 0 20px}
+  .f-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:24px}
+  .f-title{font-size:14px;font-weight:bold;text-transform:uppercase;color:var(--dark);margin:0 0 14px;padding-bottom:8px;border-bottom:2px solid var(--line)}
+  .f-main ul{list-style:none;margin:0;padding:0;font-size:13px}
+  .f-main li{padding:3px 0}
+  .f-main a{color:var(--gray)}
+  .f-main a:hover{color:var(--red)}
+  .f-bottom{background:var(--dark);color:#ccc;font-size:12px;padding:12px 0;text-align:center}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="container">
+    <div><span>Język:</span><b>Polski</b><span>Waluta:</span><b>PLN</b><span>Kraj dostawy:</span><b>Polska</b></div>
+    <div><span>Infolinia: 605 48 48 15</span><a href="#">Zaloguj się</a></div>
+  </div>
+</div>
+
+<div class="header-main">
+  <div class="container">
+    <div class="logo">
+      <span class="logo-badge">
+        <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8" stroke="#fff" stroke-width="2"/><path d="M12 7v5l3.5 2" stroke="#d40808" stroke-width="2" stroke-linecap="round"/></svg>
+      </span>
+      <span class="logo-name">VIVA<em>B2B</em></span>
+    </div>
+    <form class="search" onsubmit="return false">
+      <input type="text" placeholder="Szukaj zegarka, marki, modelu...">
+      <button>Szukaj</button>
+    </form>
+    <button class="cart-btn">&#128722; Koszyk (0)</button>
+  </div>
+</div>
+
+<nav class="menubar">
+  <div class="container">
+    <ul>
+      <li><a href="#">Start</a></li>
+      <li><a href="#">Zegarki Męskie</a></li>
+      <li><a href="#">Zegarki Damskie</a></li>
+      <li><a href="#">Smartwatche</a></li>
+      <li><a href="#">Casio</a></li>
+      <li><a href="#">Komunia</a></li>
+      <li><a href="#">Wyprzedaż</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="slider">
+  <h2>HURTOWNIA ZEGARKÓW</h2>
+  <p>Znane marki, hurtowe ceny, dropshipping bez ryzyka — ponad 5 000 modeli w ofercie</p>
+  <a class="btn" href="#">Zobacz ofertę</a>
+  <div class="dots"><i class="on"></i><i></i><i></i><i></i></div>
+</div>
+
+<div class="trust">
+  <div class="container">
+    <ul>
+      <li><i>&#10003;</i>Autoryzowany sprzedawca</li>
+      <li><i>&#8634;</i>Łatwe zwroty</li>
+      <li><i>&#9889;</i>Szybka wysyłka</li>
+      <li><i>&#9679;</i>Produkty oryginalne</li>
+    </ul>
+  </div>
+</div>
+
+<h3 class="section-title">Nowości</h3>
+<div class="container">
+  <div class="tabs">
+    <button class="on">Nowości</button>
+    <button>Najlepsze</button>
+    <button>Wyprzedaż</button>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <span class="badge">NEW</span>
+      <div class="ph"><svg width="90" height="90" viewBox="0 0 90 90"><circle cx="45" cy="45" r="26" fill="#fff" stroke="#1c1c1e" stroke-width="3"/><path d="M45 30v15l10 6" stroke="#d40808" stroke-width="3" fill="none" stroke-linecap="round"/><rect x="32" y="8" width="26" height="10" rx="3" fill="#1c1c1e"/><rect x="32" y="72" width="26" height="10" rx="3" fill="#1c1c1e"/></svg></div>
+      <h4>Zegarek Męski Giewont Sapphire Czarny GW8510</h4>
+      <div class="price"><b>129,00 zł</b></div>
+      <div class="btns"><a class="btn-cart" href="#">Do koszyka</a></div>
+    </div>
+
+    <div class="card">
+      <span class="badge">NEW</span>
+      <div class="ph"><svg width="90" height="90" viewBox="0 0 90 90"><circle cx="45" cy="45" r="26" fill="#fff" stroke="#8a8a92" stroke-width="3"/><path d="M45 30v15l-10 6" stroke="#1c1c1e" stroke-width="3" fill="none" stroke-linecap="round"/><rect x="32" y="8" width="26" height="10" rx="3" fill="#8a8a92"/><rect x="32" y="72" width="26" height="10" rx="3" fill="#8a8a92"/></svg></div>
+      <h4>Zegarek Męski Giewont Sapphire Srebrno-Czarny GW9580</h4>
+      <div class="price"><b>135,00 zł</b></div>
+      <div class="btns"><a class="btn-cart" href="#">Do koszyka</a></div>
+    </div>
+
+    <div class="card">
+      <span class="badge dark">-20%</span>
+      <div class="ph"><svg width="90" height="90" viewBox="0 0 90 90"><circle cx="45" cy="45" r="26" fill="#fff" stroke="#b98a2f" stroke-width="3"/><path d="M45 30v15l10 6" stroke="#1c1c1e" stroke-width="3" fill="none" stroke-linecap="round"/><rect x="32" y="8" width="26" height="10" rx="3" fill="#b98a2f"/><rect x="32" y="72" width="26" height="10" rx="3" fill="#b98a2f"/></svg></div>
+      <h4>Zegarek Damski Giewont Sapphire Złoty GW5390-A3</h4>
+      <div class="price"><s>159,00 zł</s><b>127,20 zł</b></div>
+      <div class="btns"><a class="btn-cart" href="#">Do koszyka</a></div>
+    </div>
+
+    <div class="card">
+      <span class="badge">NEW</span>
+      <div class="ph"><svg width="90" height="90" viewBox="0 0 90 90"><rect x="30" y="18" width="30" height="54" rx="12" fill="#1c1c1e"/><rect x="35" y="30" width="20" height="26" rx="4" fill="#2e2e34" stroke="#d40808" stroke-width="2"/><path d="M40 20h10M40 70h10" stroke="#d40808" stroke-width="3"/></svg></div>
+      <h4>Smartwatch GIEWONT Czarny GW430-1</h4>
+      <div class="price"><b>99,00 zł</b></div>
+      <div class="btns"><a class="btn-cart" href="#">Do koszyka</a></div>
+    </div>
+
+    <div class="card">
+      <div class="ph"><svg width="90" height="90" viewBox="0 0 90 90"><circle cx="45" cy="45" r="26" fill="#fff" stroke="#8a5a5a" stroke-width="3"/><path d="M45 30v15l-10 6" stroke="#1c1c1e" stroke-width="3" fill="none" stroke-linecap="round"/><rect x="32" y="8" width="26" height="10" rx="3" fill="#8a5a5a"/><rect x="32" y="72" width="26" height="10" rx="3" fill="#8a5a5a"/></svg></div>
+      <h4>Zegarek Damski Giewont Sapphire Różowe Złoto GW5390-A5</h4>
+      <div class="price"><b>149,00 zł</b></div>
+      <div class="btns"><a class="btn-ask" href="#">Zapytaj o produkt</a></div>
+    </div>
+
+    <div class="card">
+      <div class="ph"><svg width="90" height="90" viewBox="0 0 90 90"><circle cx="45" cy="45" r="26" fill="#fff" stroke="#3a4a5a" stroke-width="3"/><path d="M45 30v15l10 6" stroke="#1c1c1e" stroke-width="3" fill="none" stroke-linecap="round"/><rect x="32" y="8" width="26" height="10" rx="3" fill="#3a4a5a"/><rect x="32" y="72" width="26" height="10" rx="3" fill="#3a4a5a"/></svg></div>
+      <h4>Zegarek CASIO AQ-240EG-9AEF Unisex + BOX</h4>
+      <div class="price"><b>219,00 zł</b></div>
+      <div class="btns"><a class="btn-ask" href="#">Zapytaj o produkt</a></div>
+    </div>
+
+    <div class="card">
+      <span class="badge dark">-15%</span>
+      <div class="ph"><svg width="90" height="90" viewBox="0 0 90 90"><rect x="30" y="18" width="30" height="54" rx="12" fill="#7a4a6a"/><rect x="35" y="30" width="20" height="26" rx="4" fill="#8a5a7a" stroke="#fff" stroke-width="2"/><path d="M40 20h10M40 70h10" stroke="#fff" stroke-width="3"/></svg></div>
+      <h4>Smartwatch Damski GIEWONT Różowe Złoto GW330-1</h4>
+      <div class="price"><s>119,00 zł</s><b>101,15 zł</b></div>
+      <div class="btns"><a class="btn-cart" href="#">Do koszyka</a></div>
+    </div>
+
+    <div class="card">
+      <div class="ph"><svg width="90" height="90" viewBox="0 0 90 90"><circle cx="45" cy="45" r="26" fill="#fff" stroke="#1c1c1e" stroke-width="3"/><path d="M45 30v15l-10 6" stroke="#d40808" stroke-width="3" fill="none" stroke-linecap="round"/><rect x="32" y="8" width="26" height="10" rx="3" fill="#1c1c1e"/><rect x="32" y="72" width="26" height="10" rx="3" fill="#1c1c1e"/></svg></div>
+      <h4>Zegarek SMARTWATCH G.Rossi SW010-11</h4>
+      <div class="price"><b>89,00 zł</b></div>
+      <div class="btns"><a class="btn-ask" href="#">Zapytaj o produkt</a></div>
+    </div>
+  </div>
+</div>
+
+<h3 class="section-title">Hurtownia zegarków — dlaczego my?</h3>
+<div class="seo">
+  <p>Prowadzisz sklep internetowy, sklep stacjonarny lub działasz w modelu <b>dropshipping</b>? Nasza oferta została przygotowana wprost dla Ciebie. W ofercie prezentujemy wyłącznie zegarki znanych i cenionych producentów: Casio, Giewont, G.Rossi, Paul Lorens, Bisset, Pacific, Timex i wiele innych — dla kobiet, mężczyzn i dzieci, a także smartwatche, smartbandy i akcesoria.</p>
+  <p>Rzetelnie realizujemy zamówienia, wysyłamy nawet w dniu zamówienia, a integracja XML pozwala aktualizować stany magazynowe i ceny każdego dnia. Nasi klienci płacą wyłącznie za towar i przesyłkę — bez ukrytych kosztów.</p>
+</div>
+
+<h3 class="section-title">Z naszego bloga</h3>
+<div class="container">
+  <div class="blog">
+    <div class="post">
+      <h4>Dropshipping na Allegro — sprzedaż zegarków bez ryzyka</h4>
+      <p>Sprzedaż zegarków na Allegro nie musi oznaczać magazynu pełnego towaru i zamrożonego kapitału...</p>
+      <a href="#">Więcej »</a>
+    </div>
+    <div class="post">
+      <h4>Hurtownia zegarków — jak wybrać dostawcę do sklepu online?</h4>
+      <p>Hurtownia zegarków to nie tylko zaplecze produktowe, ale ogniwo wpływające na tempo sprzedaży...</p>
+      <a href="#">Więcej »</a>
+    </div>
+    <div class="post">
+      <h4>Bransoleta do smartwatcha jako sposób na wyrażenie osobowości</h4>
+      <p>Klasyczna stal, nowoczesny splot mesh czy odważny kolor? Każdy wybór to komunikat...</p>
+      <a href="#">Więcej »</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="trust">
+    <div class="container">
+      <ul>
+        <li><i>&#10003;</i>Autoryzowany sprzedawca</li>
+        <li><i>&#8634;</i>Łatwe zwroty</li>
+        <li><i>&#9889;</i>Szybka wysyłka</li>
+        <li><i>&#9679;</i>Produkty oryginalne</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="f-main">
+    <div class="container">
+      <div class="f-grid">
+        <div>
+          <p class="f-title">Kontakt</p>
+          <address style="font-style:normal;font-size:13px;color:#6b6b6b;line-height:1.8">
+            <b>VIVAWATCHES</b><br>
+            ul. Przykładowa 1<br>
+            00-000 Warszawa<br>
+            <b>Infolinia:</b> 605 48 48 15<br>
+            Pon - Pt 8:00 - 15:00<br>
+            @: kontakt@vivawatches.pl
+          </address>
+        </div>
+        <div>
+          <p class="f-title">Informacje</p>
+          <ul>
+            <li><a href="#">Dlaczego my</a></li>
+            <li><a href="#">O nas</a></li>
+            <li><a href="#">Regulamin hurtowni</a></li>
+            <li><a href="#">Polityka prywatności</a></li>
+            <li><a href="#">Dane kontaktowe</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="f-title">Wsparcie</p>
+          <ul>
+            <li><a href="#">Formy płatności</a></li>
+            <li><a href="#">Koszty dostawy</a></li>
+            <li><a href="#">Zwroty</a></li>
+            <li><a href="#">Reklamacje</a></li>
+            <li><a href="#">Gwarancja</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="f-title">Współpraca</p>
+          <ul>
+            <li><a href="#" style="color:#d40808;font-weight:bold">DARMOWA REJESTRACJA</a></li>
+            <li><a href="#">Hurtownia zegarków</a></li>
+            <li><a href="#">Hurtownia dropshipping</a></li>
+            <li><a href="#">Hurtownia B2B</a></li>
+            <li><a href="#">Rabaty</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="f-title">Poradnik</p>
+          <ul>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Zamówienie — jak złożyć?</a></li>
+            <li><a href="#">Zamówienie za pobraniem</a></li>
+            <li><a href="#">Wodoszczelność</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="f-bottom">Copyright &copy; 2026 VIVAWATCHES. Wszelkie prawa zastrzeżone.</div>
+</footer>
+
+</body>
+</html>

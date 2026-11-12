@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="220" height="48" viewBox="0 0 220 48">
+  <rect x="2" y="6" width="44" height="36" rx="6" fill="#1c1c1e"/>
+  <circle cx="24" cy="24" r="12" fill="none" stroke="#ffffff" stroke-width="2.5"/>
+  <path d="M24 17v7l5 3" fill="none" stroke="#d40808" stroke-width="2.5" stroke-linecap="round"/>
+  <rect x="14" y="2" width="20" height="5" rx="2" fill="#d40808"/>
+  <rect x="14" y="41" width="20" height="5" rx="2" fill="#d40808"/>
+  <text x="58" y="31" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="bold" fill="#1c1c1e">VIVA<tspan fill="#d40808">B2B</tspan></text>
+</svg>
