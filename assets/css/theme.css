@@ -1,0 +1,370 @@
+/* =========================================================
+   VIVA Watches — motyw potomny Hummingbird
+   PrestaShop 9.1+ (Bootstrap 5.3)
+   Styl oparty na podglądzie vivab2b.pl (hurtownia zegarków)
+   ========================================================= */
+
+:root {
+  --viva-red: #d40808;
+  --viva-red-dark: #a90606;
+  --viva-dark: #1c1c1e;
+  --viva-gray: #6b6b6b;
+  --viva-line: #e5e5e5;
+  --viva-bg: #f5f5f5;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #333333;
+}
+
+a { color: #333333; }
+a:hover { color: var(--viva-red); }
+
+/* ---------- Pasek górny (kontakt / język / waluta / konto) ---------- */
+
+.viva-topbar {
+  background: var(--viva-bg);
+  border-bottom: 1px solid var(--viva-line);
+  font-size: 12px;
+  min-height: 36px;
+}
+
+.viva-topbar .header-top__left,
+.viva-topbar .header-top__right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+.viva-topbar .header-top__right { justify-content: flex-end; }
+
+.viva-topbar a { color: var(--viva-gray); }
+.viva-topbar a:hover { color: var(--viva-red); }
+
+.viva-topbar .language-selector-wrapper,
+.viva-topbar .currency-selector-wrapper,
+.viva-topbar .user-info,
+.viva-topbar #_desktop_contact_link,
+.viva-topbar .contact-link {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* ---------- Nagłówek główny: logo + wyszukiwarka ---------- */
+
+.viva-header-main {
+  background: #ffffff;
+  padding: 14px 0;
+}
+
+.viva-logo img,
+.viva-logo .logo {
+  max-height: 48px;
+  width: auto;
+}
+
+.viva-header-search {
+  display: flex;
+  align-items: center;
+}
+
+.viva-header-search #search_widget {
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+.viva-header-search #search_widget input {
+  height: 42px;
+  border: 1px solid var(--viva-line);
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.viva-header-search #search_widget button[type="submit"],
+.viva-header-search #search_widget .search {
+  background: var(--viva-dark);
+  color: #ffffff;
+  border-radius: 0;
+}
+
+/* ---------- Ciemny pasek menu ---------- */
+
+.viva-menubar {
+  background: var(--viva-dark);
+  margin-top: 10px;
+}
+
+.viva-menubar .top-menu {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.viva-menubar .top-menu > li { position: relative; }
+
+.viva-menubar .top-menu > li > a {
+  display: block;
+  padding: 12px 18px;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.viva-menubar .top-menu > li > a:hover,
+.viva-menubar .top-menu > li.active > a {
+  background: var(--viva-red);
+  color: #ffffff;
+}
+
+.viva-menubar .top-menu .sub-menu {
+  background: #ffffff;
+  border: 1px solid var(--viva-line);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.viva-menubar .top-menu .sub-menu a {
+  color: #333333;
+  text-transform: none;
+  font-weight: normal;
+}
+
+.viva-menubar .top-menu .sub-menu a:hover {
+  color: var(--viva-red);
+  background: var(--viva-bg);
+}
+
+/* ---------- Sticky header ---------- */
+
+.viva-header-main.is-sticky {
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+/* ---------- Kafelka produktu (styl B2B) ---------- */
+
+.viva-product {
+  background: #ffffff;
+  border: 1px solid var(--viva-line);
+  height: 100%;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.viva-product:hover {
+  border-color: #cccccc;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.viva-product .product-miniature__top,
+.viva-product .viva-product-media {
+  position: relative;
+  padding: 16px;
+  text-align: center;
+}
+
+.viva-product .product-miniature__image img {
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+
+.viva-product .product-flags {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-align: left;
+  z-index: 2;
+}
+
+.viva-product .product-flag {
+  display: inline-block;
+  padding: 3px 8px;
+  font-size: 11px;
+  font-weight: bold;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-radius: 0;
+}
+
+.viva-product .product-flag.product-flag--new,
+.viva-product .product-flag--on-sale { background: var(--viva-red); }
+
+.viva-product .product-flag:not(.product-flag--new):not(.product-flag--on-sale) {
+  background: var(--viva-dark);
+}
+
+.viva-product .product-miniature__bottom.viva-product-desc {
+  padding: 12px 14px 16px;
+  border-top: 1px solid var(--viva-line);
+  text-align: center;
+}
+
+.viva-product .product-miniature__title.viva-product-title {
+  display: block;
+  font-size: 14px;
+  line-height: 1.35;
+  min-height: 38px;
+  margin: 0 0 8px;
+  font-weight: normal;
+  color: #333333;
+}
+
+.viva-product .product-miniature__title.viva-product-title:hover {
+  color: var(--viva-red);
+}
+
+.viva-product .product-miniature__price.viva-price-current {
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--viva-dark);
+}
+
+.viva-product .product-miniature__regular-price.viva-price-regular {
+  font-size: 13px;
+  color: var(--viva-gray);
+}
+
+.viva-product .product-miniature__actions {
+  margin-top: 10px;
+}
+
+.viva-btn-cart {
+  background: var(--viva-red);
+  border-color: var(--viva-red);
+  color: #ffffff;
+  border-radius: 0;
+  text-transform: uppercase;
+  font-size: 13px;
+  font-weight: bold;
+  width: 100%;
+}
+
+.viva-btn-cart:hover,
+.viva-btn-cart:focus {
+  background: var(--viva-red-dark);
+  border-color: var(--viva-red-dark);
+  color: #ffffff;
+}
+
+.viva-btn-ask {
+  background: #ffffff;
+  border: 1px solid var(--viva-dark);
+  color: var(--viva-dark);
+  border-radius: 0;
+  text-transform: uppercase;
+  font-size: 13px;
+  font-weight: bold;
+  width: 100%;
+}
+
+.viva-btn-ask:hover,
+.viva-btn-ask:focus {
+  background: var(--viva-dark);
+  border-color: var(--viva-dark);
+  color: #ffffff;
+}
+
+/* ---------- Pasek zaufania + stopka ---------- */
+
+.viva-footer-trust {
+  border-top: 1px solid var(--viva-line);
+  border-bottom: 1px solid var(--viva-line);
+  background: var(--viva-bg);
+  padding: 18px 0;
+  margin-bottom: 24px;
+}
+
+.viva-trust-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 13px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: var(--viva-dark);
+}
+
+.viva-trust-icon {
+  color: var(--viva-red);
+  margin-right: 6px;
+}
+
+.viva-footer .viva-footer-title {
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: var(--viva-dark);
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--viva-line);
+}
+
+.viva-footer-contact {
+  font-size: 13px;
+  font-style: normal;
+  color: var(--viva-gray);
+  line-height: 1.7;
+}
+
+.viva-footer a { color: var(--viva-gray); text-decoration: none; }
+.viva-footer a:hover { color: var(--viva-red); }
+
+.viva-footer-bottom {
+  background: var(--viva-dark);
+  color: #cccccc;
+  font-size: 12px;
+  padding: 12px 0;
+  margin-top: 24px;
+}
+
+.viva-footer-bottom p { margin: 0; }
+
+/* ---------- Powrót na górę ---------- */
+
+.viva-back-to-top {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: 42px;
+  height: 42px;
+  background: var(--viva-red);
+  color: #ffffff;
+  border: 0;
+  border-radius: 50%;
+  font-size: 18px;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+  z-index: 1080;
+}
+
+.viva-back-to-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ---------- Responsywność ---------- */
+
+@media (max-width: 767.98px) {
+  .viva-header-search { order: 3; flex-basis: 100%; margin-top: 10px; }
+  .viva-menubar .top-menu > li > a { padding: 10px 12px; font-size: 12px; }
+  .viva-trust-list { justify-content: flex-start; }
+}

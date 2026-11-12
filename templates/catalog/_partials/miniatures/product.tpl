@@ -1,0 +1,110 @@
+{**
+ * For the full copyright and license information, please view the
+ * LICENSE.md file that was distributed with this source code.
+ *}
+
+{$componentName = 'product-miniature'}
+
+{block name='product_miniature_item'}
+  <article
+    class="{$componentName} js-{$componentName} viva-product"
+    data-id-product="{$product.id_product}"
+    data-id-product-attribute="{$product.id_product_attribute}"
+  >
+    <div class="{$componentName}__inner">
+
+      {block name='product_miniature_top'}
+        <div class="{$componentName}__top viva-product-media">
+          {include file='catalog/_partials/product-flags.tpl'}
+
+          {include file='catalog/_partials/miniatures/product-image.tpl'}
+
+          {include file='catalog/_partials/miniatures/product-quickview.tpl'}
+        </div>
+      {/block}
+
+      {block name='product_miniature_bottom'}
+        <div class="{$componentName}__bottom viva-product-desc">
+          <div class="{$componentName}__infos">
+            {block name='product_name'}
+              <a class="{$componentName}__title viva-product-title" href="{$product.url}" aria-label="{l s='View product %product_name%' sprintf=['%product_name%' => $product.name] d='Shop.Theme.Catalog'}">{$product.name}</a>
+            {/block}
+
+            {block name='product_variants'}
+              {if $product.main_variants}
+                <div class="{$componentName}__variants">
+                  {include file='catalog/_partials/variant-links.tpl' variants=$product.main_variants}
+                </div>
+              {/if}
+            {/block}
+
+            {if $product.show_price}
+              <div class="{$componentName}__prices viva-product-price">
+                {block name='product_price'}
+                  {hook h='displayProductPriceBlock' product=$product type="before_price"}
+
+                  <div class="{$componentName}__price viva-price-current" aria-label="{l s='Price' d='Shop.Theme.Catalog'}">
+                    {capture name='custom_price'}{hook h='displayProductPriceBlock' product=$product type='custom_price' hook_origin='products_list'}{/capture}
+                    {if '' !== $smarty.capture.custom_price}
+                      {$smarty.capture.custom_price nofilter}
+                    {else}
+                      {$product.price}
+                    {/if}
+                  </div>
+
+                  {hook h='displayProductPriceBlock' product=$product type='unit_price'}
+                  {hook h='displayProductPriceBlock' product=$product type='weight'}
+                {/block}
+
+                {block name='product_discount_price'}
+                  {if $product.show_price}
+                    <div class="{$componentName}__discount-price">
+                      {if $product.has_discount}
+                        {hook h='displayProductPriceBlock' product=$product type="old_price"}
+                        <span class="{$componentName}__regular-price viva-price-regular" aria-label="{l s='Regular price' d='Shop.Theme.Catalog'}">{$product.regular_price}</span>
+                      {/if}
+                    </div>
+                  {/if}
+                {/block}
+              </div>
+            {/if}
+
+            {block name='product_reviews'}
+              {hook h='displayProductListReviews' product=$product}
+            {/block}
+          </div>
+
+          {block name='product_actions'}
+            <div class="{$componentName}__actions">
+              {if $product.add_to_cart_url}
+                <form class="{$componentName}__form" action="{$urls.pages.cart}" method="post">
+                  <input type="hidden" value="{$product.id_product}" name="id_product">
+                  {if $product.id_product_attribute}
+                    <input type="hidden" value="{$product.id_product_attribute}" name="id_product_attribute">
+                  {/if}
+                  <input type="hidden" name="token" value="{$static_token}">
+
+                  <button
+                    data-button-action="add-to-cart"
+                    class="product-miniature__add btn btn-primary viva-btn-cart"
+                    aria-label="{l s='Add to cart %product_name%' sprintf=['%product_name%' => $product.name] d='Shop.Theme.Actions'}"
+                    title="{l s='Add to cart %product_name%' sprintf=['%product_name%' => $product.name] d='Shop.Theme.Actions'}"
+                    data-ps-ref="add-to-cart"
+                  >
+                    <i class="material-icons" aria-hidden="true">&#xe854;</i>
+                    <span class="product-miniature__add-text">{l s='Do koszyka' d='Shop.Theme.Actions'}</span>
+                  </button>
+                </form>
+              {else}
+                <a href="{$product.url}" class="product-miniature__details btn btn-outline-primary viva-btn-ask" aria-label="{l s='See details for %product_name%' sprintf=['%product_name%' => $product.name] d='Shop.Theme.Actions'}">
+                  {l s='Zapytaj o produkt' d='Shop.Theme.Actions'}
+                </a>
+              {/if}
+            </div>
+          {/block}
+        </div>
+      {/block}
+
+    </div>
+  </article>
+{/block}
