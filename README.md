@@ -20,8 +20,12 @@ vivawatches/
 ├── templates/
 │   ├── _partials/header.tpl       # topbar + logo + szukajka + ciemny pasek menu
 │   ├── _partials/footer.tpl       # pasek zaufania + kontakt + kolumny + copyright
+│   ├── catalog/product.tpl        # strona produktu (+ blok „Zapytaj o produkt” bez cen)
+│   ├── catalog/listing/product-list.tpl  # listing kategorii (tytuł z czerwonym akcentem)
+│   ├── checkout/cart.tpl          # koszyk (podsumowanie w ramce VIVA)
 │   └── catalog/_partials/miniatures/product.tpl  # kafelka produktu B2B
-├── preview.html                   # statyczny podgląd wyglądu (otwórz w przeglądarce)
+├── preview.html                   # podgląd strony głównej (otwórz w przeglądarce)
+├── preview-product.html           # podgląd strony produktu
 └── README.md
 ```
 

@@ -277,6 +277,128 @@ a:hover { color: var(--viva-red); }
   color: #ffffff;
 }
 
+/* ---------- Globalne przyciski w palecie VIVA ---------- */
+
+.btn-primary {
+  background: var(--viva-red);
+  border-color: var(--viva-red);
+  border-radius: 0;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+  background: var(--viva-red-dark);
+  border-color: var(--viva-red-dark);
+}
+
+.btn-outline-primary {
+  color: var(--viva-dark);
+  border-color: var(--viva-dark);
+  border-radius: 0;
+}
+
+.btn-outline-primary:hover,
+.btn-outline-primary:focus {
+  background: var(--viva-dark);
+  border-color: var(--viva-dark);
+  color: #ffffff;
+}
+
+/* ---------- Strona produktu ---------- */
+
+.viva-product-page .product__name {
+  font-size: 28px;
+  font-weight: bold;
+  color: var(--viva-dark);
+}
+
+.viva-product-page .product__manufacturer a {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--viva-gray);
+}
+
+.viva-product-page .product__manufacturer a:hover {
+  color: var(--viva-red);
+}
+
+.viva-ask-box {
+  border: 1px solid var(--viva-line);
+  background: var(--viva-bg);
+  padding: 18px;
+  margin: 16px 0;
+  text-align: center;
+}
+
+.viva-ask-box p {
+  color: var(--viva-gray);
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+
+.viva-product-page .product__accordion .accordion-button {
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 14px;
+  color: var(--viva-dark);
+}
+
+.viva-product-page .product__accordion .accordion-button:not(.collapsed) {
+  color: var(--viva-red);
+  background: #ffffff;
+  box-shadow: none;
+}
+
+.viva-product-page .product__accordion .accordion-button:focus {
+  box-shadow: none;
+  border-color: var(--viva-line);
+}
+
+/* ---------- Listing kategorii ---------- */
+
+.viva-listing-header .page-title {
+  position: relative;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 22px;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.viva-listing-header .page-title::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: var(--viva-red);
+}
+
+/* ---------- Koszyk ---------- */
+
+.viva-cart .cart-grid__aside-wrapper h2 {
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: var(--viva-dark);
+}
+
+.viva-cart .cart-summary {
+  background: var(--viva-bg);
+  border: 1px solid var(--viva-line);
+  padding: 18px;
+}
+
+.viva-cart .cart-summary .cart-summary-line.cart-total .value,
+.viva-cart .cart-summary .cart-total .value {
+  font-weight: bold;
+  color: var(--viva-dark);
+}
+
 /* ---------- Pasek zaufania + stopka ---------- */
 
 .viva-footer-trust {
